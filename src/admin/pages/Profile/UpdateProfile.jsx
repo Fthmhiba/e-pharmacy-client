@@ -18,11 +18,11 @@ function UpdateProfile() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.put("http://localhost:3001/api/admin/profile", editData, {
-                headers: {
-                    'Authorization': `Bearer ${localStorage.getItem("admintoken")} `
-                }
-            })
+            // const response = await axios.put("http://localhost:3001/api/admin/profile", editData, {
+            //     headers: {
+            //         'Authorization': `Bearer ${localStorage.getItem("admintoken")} `
+            //     }
+            // })
             console.log(response, 'response');
             setRefresh(!refresh);
 

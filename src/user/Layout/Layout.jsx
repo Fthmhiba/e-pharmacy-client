@@ -1,12 +1,19 @@
 import { Outlet, useNavigate } from "react-router-dom"
 import Header from "./components/Header"
 import Footer from "./components/Footer"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Layout() {
-    const [tokenState, setTokenState] = useState(false);
+    const [tokenState, setTokenState] = useState(Boolean(localStorage.getItem("usertoken")));
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!tokenState) {
+      navigate('/user-login')
+    }
+  }, [navigate, tokenState]);
+ 
 
   return (
     <div>
@@ -21,7 +28,8 @@ function Layout() {
             <Footer/>
         </div>
         :
-        navigate('user-login')
+        navigate('/user-login')
+
       }
     </div>
   )

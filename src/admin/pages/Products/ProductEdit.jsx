@@ -14,73 +14,73 @@ function ProductEdit() {
   const [categories,setCategories] = useState([]);
   const [ dropdown,setDropdown ] = useState('');
 
-//   const {id} = useParams();
-//   const navigate = useNavigate();
+  const {id} = useParams();
+  const navigate = useNavigate();
 
-//   const value = useLocation();
-//   console.log("value: ",value.state);
+  const value = useLocation();
+  console.log("value: ",value.state);
 
 
 
-//   const editProduct = async(e) =>{
-//     e.preventDefault()
-//     try {
-//         const response = await axios.put(`http://localhost:3000/api/products/${id}`,{mainImage:mainImage,image:image,name:name,price:price,details:details,delivery:delivery,dropdown},
-//         {
-//           headers:{
-//           'Authorization':`Bearer ${localStorage.getItem("adminToken")}`
-//           }
-//         })
+  const editProduct = async(e) =>{
+    e.preventDefault()
+    try {
+        const response = await axios.put(`http://localhost:3001/api/products/${id}`,{mainImage:mainImage,image:image,name:name,price:price,details:details,delivery:delivery,dropdown},
+        {
+          headers:{
+          'Authorization':`Bearer ${localStorage.getItem("admintoken")}`
+          }
+        })
   
-//         // setEdit(response.data.users)
-//         console.log(response,"response");
+        // setEdit(response.data.users)
+        console.log(response,"response");
 
-//         navigate('/admin/products');
-        // successToast("Edited Succesfully");
-//       } catch (error) {
-        // errorToast(error.message);
-//       }
-// }
+        navigate('/admin/products');
+        successToast("Edited Succesfully");
+      } catch (error) {
+        errorToast(error.message);
+      }
+}
 
 
-// // edit aakmbo avde already illa details displey cheyyaan vndi aan uselocation use cheythe..
-// // ith kittaan view page l state  item pass cheythkn...
-// // OR
-// // allenki input kodkna avde valuente ullil name maatteett value.state.name kodthaalm mathi
-//   useEffect(()=>{
-//     setName(value.state.name)
-//     setPrice(value.state.price)
-//     setDetails(value.state.details)
-//     setDelivery(value.state.delivery)
-//     setCategories(value.state.categories)
+// edit aakmbo avde already illa details displey cheyyaan vndi aan uselocation use cheythe..
+// ith kittaan view page l state  item pass cheythkn...
+// OR
+// allenki input kodkna avde valuente ullil name maatteett value.state.name kodthaalm mathi
+  useEffect(()=>{
+    setName(value.state.name)
+    setPrice(value.state.price)
+    setDetails(value.state.details)
+    setDelivery(value.state.delivery)
+    setCategories(value.state.categories)
     
-//     fetchAPI()
-//   },[])
+    fetchData()
+  },[])
 
 
 
-//   const fetchAPI = async(e) =>{
-//     try {
-//         const response = await axios.get("http://localhost:3000/api/categories",{headers:{
-//           'Authorization':`Bearer ${localStorage.getItem("adminToken")} `
-//         }})
-//         console.log(response,"res");
+  const fetchData = async(e) =>{
+    try {
+        const response = await axios.get("http://localhost:3001/api/categories",{headers:{
+          'Authorization':`Bearer ${localStorage.getItem("admintoken")} `
+        }})
+        console.log(response,"res");
   
-//         setCategories(response.data.Category)
-//       } catch (error) {
-//         errorToast(error.message)
-//       }
-// }
+        setCategories(response.data.Category)
+      } catch (error) {
+        errorToast(error.message)
+      }
+}
 
-// 
+
 return (
     <>
     <div className="">
-        <form action="" onSubmit={editProduct} className='m-auto w-[260px] sm:w-[450px] p-5 rounded-2xl border border-pink-900 shadow-md shadow-pink-900'>
+        <form action="" onSubmit={editProduct} className='m-auto w-[260px] sm:w-[450px] p-5 rounded-2xl border border-teal-900 shadow-md shadow-teal-900'>
             <p className='text-base sm:text-lg mt-3 p-3 text-center'>Edit Products</p>
             <div className="justify-center items-center sm:ml-0 ml-2 ">
 
-            <p className='font-thin text-pink-900'>Set a Main Image</p>
+            <p className='font-thin text-teal-900'>Set a Main Image</p>
             <div className="flex justify-center items-center sm:ml-0 ml-2 ">
                     <img src={mainImage} alt="loading..." className='bg-slate-100 w-[60px] h-[60px] sm:w-[100px] sm:h-[100px] rounded-lg m-2' />
               <FileBase64 onDone={ (res)=>setMainImage(res.base64)} />

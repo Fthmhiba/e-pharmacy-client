@@ -28,7 +28,7 @@ function AdminLayout() {
             <div className=" flex ">
               <SideBar />
 
-              <div className="w-[60%] h-[100vh] rounded-xl m-auto bg-slate-200 ">
+              <div className="w-[100%] h-[100vh] rounded-xl m-auto bg-slate-200 ">
                 <Outlet />
               </div>
             </div>

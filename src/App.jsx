@@ -1,9 +1,8 @@
-
+import React, { createContext, useEffect } from 'react'
 import './index.css'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Layout from './user/Layout/Layout'
 import Home from './user/Home/Home'
-import Shopping from './user/Home/components/Shopping'
 import Signup from './user/Register/Signup'
 import Login from './user/Login/Login'
 // import Wishlist from './user/Wishlist/Wishlist'
@@ -25,10 +24,54 @@ import AdminProfile from './admin/pages/Profile/AdminProfile'
 import UserManagement from './admin/pages/User/UserManagement'
 import ProductView from './admin/pages/Products/ProductView'
 import UpdateProfile from './admin/pages/Profile/UpdateProfile'
+import EditCategory from './admin/pages/Categories/EditCategory'
+import ViewCategory from './admin/pages/Categories/ViewCategory'
+import AddCategory from './admin/pages/Categories/AddCategory'
+import ViewCards from './admin/pages/OfferCards/ViewCards'
+import EditCards from './admin/pages/OfferCards/EditCards'
+import AddCards from './admin/pages/OfferCards/AddCards'
+import ViewBanner from './admin/pages/Banner/ViewBanner'
+import AddBanner from './admin/pages/Banner/AddBanner'
+import Banner from './admin/pages/Banner/Banner'
+import AddBanner2 from './admin/pages/Banner/AddBanner2'
+import Card from './admin/pages/Cards/Card'
+
+import CategoriesLayout from './user/Pages/Categories/CategoriesLayout'
+import StartShopping from './user/Pages/Shopping/StartShopping'
+import Cards from './user/Pages/Cards/Cards'
+import ViewAll from './user/Pages/ViewAll/ViewAll'
+import Payment from './user/Pages/Payment/Payment'
+import ProductDetails from './user/Pages/Products/ProductDetails'
+import { useState } from 'react'
+import Checkout from './user/Pages/Orders/Checkout'
+import Orders from './user/Pages/Orders/Orders'
+import axios from 'axios'
+import Wishlist from './user/Pages/Wishlist/Wishlist'
+import ViewCard from './admin/pages/Cards/ViewCard'
+import EditCard from './admin/pages/Cards/EditCard'
+import AddCard from './admin/pages/Cards/AddCard'
+import ViewCoupons from './admin/pages/Coupons/ViewCoupons'
+import EditCoupons from './admin/pages/Coupons/EditCoupons'
+import AddCoupons from './admin/pages/Coupons/AddCoupons'
+import Coupons from './admin/pages/Coupons/Coupons'
+import Coupon from './user/Pages/Coupons/Coupon'
+import AddBlog from './admin/pages/Blogs/AddBlog'
+import ViewBlog from './admin/pages/Blogs/ViewBlog'
+
+
+export const Context = React.createContext()
 
 
 
 function App() {
+  const [count, setCount] = useState(0)
+  const [cart, setCart] = useState([])
+  const [wishlist, setWishlist] = useState([])
+  const [refresh, setRefresh] = useState(true)
+
+
+
+
   const router = createBrowserRouter([
 
     {
@@ -41,72 +84,104 @@ function App() {
         },
         {
           path: "shopping/:page",
-          element: <Shopping/>
+          element: <CategoriesLayout />
         },
         {
           path: "wishlist",
-          // element: <Wishlist />,
+          element: <Wishlist />,
         },
         {
           path: "cart",
-          element: <Cart/>,
+          element: <Cart />,
+        },
+        {
+          path: "coupons",
+          element: <Coupon />,
         },
         {
           path: "profile",
-          element: <Profile/>
+          element: <Profile />
+        },
+        {
+          path: "products/:prdctdetails",
+          element: <ProductDetails />
         },
         {
           path: "order",
-          // element: <Orders/>
+          element: <Orders />
+        },
+        {
+          path: "cards/:cards",
+          element: <Cards />
         },
         {
           path: "payment",
-          // element: <Payment/>
+          element: <Payment />
         },
+        {
+          path: "checkout",
+          element: <Checkout />
+        },
+        {
+          path: "view-all",
+          element: <ViewAll />
+        },
+        {
+          path: "start-shopping",
+          element: <StartShopping />
+        }
 
       ],
-      
+
     },
-    
+
     // admin's---------------------------------------
 
 
     {
       path: "/admin",
-      element: <AdminLayout/>,
+      element: <AdminLayout />,
       children: [
         {
-          path:"",
-          element: <AdminHome/>
+          path: "",
+          element: <AdminHome />
         },
         {
-          path:"profile",
-          element: <AdminProfile/>,
+          path: "profile",
+          element: <AdminProfile />,
           children: [
             {
               path: "update",
-              element: <UpdateProfile/>
+              element: <UpdateProfile />
             }
           ]
         },
-        // {
-        //   path: "banner",
-        //   element: <BannerLayout/>,
-        //   children: [
-        //     {
-        //       path: "",
-        //       element: <BannerPreview/>
-        //     },
-       
-        //   ]
-        // },
+        {
+          path: "banners",
+          element: <Banner />,
+          children: [
+            {
+              path: "",
+              element: <ViewBanner />
+            },
+            {
+              path: "add-banner1",
+              element: <AddBanner />
+            },
+            {
+              path: "add-banner2",
+              element: <AddBanner2 />
+            },
+
+          ]
+        },
         {
           path: "users",
-          element: <UserManagement/>
+          element: <UserManagement />
         },
         {
           path: "orders",
-          element: <Order/>,
+          element: <Order />,
           children: [
             {
               path: "",
@@ -144,73 +219,110 @@ function App() {
         },
         {
           path: "products",
-          element: <Products/>,
+          element: <Products />,
           children: [
             {
               path: "",
-              element: <ProductView/>
+              element: <ProductView />
             },
             {
               path: "edit-product/:id",
-              element: <ProductEdit/>
+              element: <ProductEdit />
             },
             {
               path: "add-product",
-              element: <ProductAdd/>
+              element: <ProductAdd />
             }
           ]
         },
         {
           path: "categories",
-          element: <Categories/>,
+          element: <Categories />,
           children: [
             {
               path: "",
-              // element:<ViewCategories/>
+              element: <ViewCategory />
             },
             {
-              path:"edit-category/:id",
-              // element : <EditCategories/>
+              path: "edit-category/:id",
+              element: <EditCategory />
             },
             {
-              path:"add-category",
-              // element : <AddCategories/>
+              path: "add-category",
+              element: <AddCategory />
             }
           ]
         },
         {
           path: "offer-cards",
-          element: <OfferCards/>,
+          element: <OfferCards />,
           children: [
             {
               path: "",
-              // element:<ViewCards/>
+              element: <ViewCards />
             },
             {
-              path:"edit-cards/:id",
-              // element : <EditCards/>
+              path: "edit-cards/:id",
+              element: <EditCards />
             },
             {
-              path:"add-cards",
-              // element : <AddCards/>
+              path: "add-cards",
+              element: <AddCards />
             }
           ]
         },
         {
-          path: "blogs",
-          element: <Blogs/>,
+          path: "cards",
+          element: <Card />,
           children: [
             {
               path: "",
-              // element: <ViewBlogs/>
+              element: <ViewCard/>
             },
             {
-              path:"edit-blog/:id",
-              // element : <EditBlogs/>
+              path: "edit-cards/:id",
+              element: <EditCard/>
             },
             {
-              path:"add-blog",
-              // element : <AddBlogs/>
+              path: "add-cards",
+              element: <AddCard />
+            }
+          ]
+        },
+        {
+          path: "coupons",
+          element: <Coupons />,
+          children: [
+            {
+              path: "",
+              element: <ViewCoupons/>
+            },
+            {
+              path: "edit-coupons/:id",
+              element: <EditCoupons/>
+            },
+            {
+              path: "add-coupon",
+              element: <AddCoupons />
+            }
+          ]
+        },
+
+        {
+          path: "blogs",
+          element: <Blogs />,
+          children: [
+            {
+              path: "",
+              element: <ViewBlog/>
+            },
+            {
+              path: "edit-blog/:id",
+              // element : <EditBlog/>
+            },
+            {
+              path: "add-blog",
+              element : <AddBlog/>
             }
           ]
         }
@@ -221,27 +333,44 @@ function App() {
 
     {
       path: "/user-signup",
-      element: <Signup/>
+      element: <Signup />
     },
     {
       path: "/user-login",
-      element: <Login/>
+      element: <Login />
     },
 
     {
-      path:"/admin-signup",
-      element: <AdminSignup/>
+      path: "/admin-signup",
+      element: <AdminSignup />
     },
     {
       path: "/admin-login",
-      element: <AdminLogin/>
+      element: <AdminLogin />
     },
 
   ])
+
+  const fetchdata = async () => {
+    try {
+        const response = await axios.get('http://localhost:3001/api/cart/viewall')
+        setCart(response.data.result)
+    } catch (error) {
+      console.log(error);
+    }
+}
+
+useEffect(() => {
+  fetchdata()
+}, [refresh])
+
+  
   return (
     <>
-      <RouterProvider router={router} />
+      <Context.Provider value={{ count, setCount, cart, setCart, wishlist, setWishlist, refresh, setRefresh }}>
+        <RouterProvider router={router} />
 
+      </Context.Provider>
     </>
   )
 }

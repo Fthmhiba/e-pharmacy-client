@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function MUproduct() {
     let medicalProducts = [
@@ -81,12 +82,18 @@ function MUproduct() {
                 </div>
 
                 <h1 className='text-center text-xl fw-bolder '>Upcoming Products</h1>
-                <div className="flex justify-around items-center gap-3 p-4">
+                <div className="text-right ">
+                    <Link to={'view-all'}>
+                        <button className='text-teal-900 sm:text-lg  '>View All <i class="fa-solid fa-arrow-right"></i></button>
+
+                    </Link>
+                </div>
+                <div className="flex justify-around items-center gap-3 p-4 ">
                     {
                         upcomingProducts.map((item) => {
                             return (
                                 <>
-                                    <div className="border-2 border-teal-700 w-40   rounded ">
+                                    <div className="border-2 border-teal-700  w-[130px] sm:w-[250px] h-fit m-5  rounded ">
                                         <img src={item.img1} className='p-2' alt="" />
                                         <div className="border-t-2 p-1">
                                             <p className='' > {item.title} </p>

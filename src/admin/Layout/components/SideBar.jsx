@@ -41,6 +41,12 @@ function SideBar() {
               <NavLink to={"offer-cards"}> Offer Card </NavLink>
             </li>
             <li className="text-lg rounded-xl my-1 w-[90%] m-auto px-9 py-3 hover:bg-slate-100 hover:text-teal-900">
+              <NavLink to={"cards"}> Cards </NavLink>
+            </li>
+            <li className="text-lg rounded-xl my-1 w-[90%] m-auto px-9 py-3 hover:bg-slate-100 hover:text-teal-900">
+              <NavLink to={"coupons"}> Coupons </NavLink>
+            </li>
+            <li className="text-lg rounded-xl my-1 w-[90%] m-auto px-9 py-3 hover:bg-slate-100 hover:text-teal-900">
               <NavLink to={"products"}> Products </NavLink>
             </li>
             <li className="text-lg rounded-xl my-1 w-[90%] m-auto px-9 py-3 hover:bg-slate-100 hover:text-teal-900">
