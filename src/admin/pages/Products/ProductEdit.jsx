@@ -25,7 +25,7 @@ function ProductEdit() {
   const editProduct = async(e) =>{
     e.preventDefault()
     try {
-        const response = await axios.put(`http://localhost:3001/api/products/${id}`,{mainImage:mainImage,image:image,name:name,price:price,details:details,delivery:delivery,dropdown},
+        const response = await axios.put(`http://localhost:3002/api/products/${id}`,{mainImage:mainImage,image:image,name:name,price:price,details:details,delivery:delivery,dropdown},
         {
           headers:{
           'Authorization':`Bearer ${localStorage.getItem("admintoken")}`
@@ -61,7 +61,7 @@ function ProductEdit() {
 
   const fetchData = async(e) =>{
     try {
-        const response = await axios.get("http://localhost:3001/api/categories",{headers:{
+        const response = await axios.get("http://localhost:3002/api/categories",{headers:{
           'Authorization':`Bearer ${localStorage.getItem("admintoken")} `
         }})
         console.log(response,"res");

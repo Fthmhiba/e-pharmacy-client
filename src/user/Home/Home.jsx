@@ -4,6 +4,7 @@ import Banner from './components/Banner'
 import Poster from './components/Poster'
 import MUproduct from './components/MUproduct'
 import Categories from '../Pages/Categories/Categories'
+import OfferCard from './components/OfferCard'
 
 function Home() {
   return (
@@ -13,6 +14,7 @@ function Home() {
         <ProductNP/>
         <Banner/>
         <MUproduct/>
+        <OfferCard/>
     </div>
   )
 }

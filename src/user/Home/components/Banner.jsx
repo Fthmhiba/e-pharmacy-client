@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
+import { errorToast } from '../../../Components/toast';
 
 function Banner() {
     const [Banner, setBanner] = useState([]);
@@ -14,7 +15,7 @@ function Banner() {
 
     const fetchData = async (e) => {
         try {
-            const response = await axios.get("http://localhost:3001/api/banner", {
+            const response = await axios.get("http://localhost:3002/api/banner", {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("admintoken")} `,
                 },
@@ -29,7 +30,7 @@ function Banner() {
 
     const fetchApi = async (e) => {
         try {
-            const response = await axios.get("http://localhost:3001/api/banner2", {
+            const response = await axios.get("http://localhost:3002/api/banner2", {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("admintoken")} `,
                 },

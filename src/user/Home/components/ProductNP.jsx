@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 function ProductNP() {
     const [data, setData] = useState([]);
     const [color, setColor] = useState("white");
+    const [productLimit, setProductLimit] = useState(4)
+
 
 
     useEffect(() => {
@@ -15,7 +17,7 @@ function ProductNP() {
     const handleAddToCart = async (e) => {
         try {
             console.log('api');
-            const response = await axios.post('http://localhost:3001/api/cart/addToCart', { productId: e, userId: JSON.parse(localStorage.getItem("userData"))?._id });
+            const response = await axios.post('http://localhost:3002/api/cart/addToCart', { productId: e, userId: JSON.parse(localStorage.getItem("userData"))?._id });
             console.log(response);
 
             successToast("Succesfully Added into Cart")
@@ -27,22 +29,22 @@ function ProductNP() {
 
     const handleAddToWishlist = async (e) => {
         try {
-          console.log('api');
-          const response = await axios.post('http://localhost:3001/api/wishlist/addToWishlist', { productId: e, userId: JSON.parse(localStorage.getItem("userData"))?._id });
-          console.log(response);
-          
-    
-          successToast("Succesfully Added into Wishlist")
-    
+            console.log('api');
+            const response = await axios.post('http://localhost:3002/api/wishlist/addToWishlist', { productId: e, userId: JSON.parse(localStorage.getItem("userData"))?._id });
+            console.log(response);
+
+
+            successToast("Succesfully Added into Wishlist")
+
         } catch (error) {
-          console.log(error);
+            console.log(error);
         }
-      };
+    };
 
 
     const fetchdata = async () => {
         try {
-            const response = await axios.get("http://localhost:3001/api/products")
+            const response = await axios.get("http://localhost:3002/api/products")
             setData(response.data.products);
         } catch (error) {
             console.log(error, 'error');
@@ -60,37 +62,40 @@ function ProductNP() {
                 </Link>
             </div>
             <div className="  flex flex-wrap justify-center m-4 ">
-                
+
                 {
                     data.map((item, index) => {
                         return (
                             <>
-                                <Card className=' border lg:w-[200px] sm:w-[150px] sm:h-[250px] m-2 flex flex-col shadow justify-between  hover:translate-x-1  '>
-                                <button type='button'  onClick={() => {
-                                        handleAddToWishlist(item._id)
-                                        setColor("danger")
-                                        }} className='bg-teal-700 py-1 px-2 sm:py-2 sm:px-8 m-2 rounded absolute text-white text-xs sm:text-base'><i class="fa-regular  fa-heart" onClick={()=>setColor("bg-warning")} ></i> </button>
+                                {index < productLimit &&
 
-                                    <Link to={`/products/${item._id}`} state={item} >
+                                    <Card className=' border lg:w-[200px] sm:w-[150px] sm:h-[250px] m-2 flex flex-col shadow justify-between  hover:translate-x-1  '>
+                                        <button type='button' onClick={() => {
+                                            handleAddToWishlist(item._id)
+                                            setColor("danger")
+                                        }} className='bg-teal-700 py-1 px-2 sm:py-2 sm:px-8 m-2 rounded absolute text-white text-xs sm:text-base'><i class="fa-regular  fa-heart" onClick={() => setColor("bg-warning")} ></i> </button>
 
-                                        <div key={index} className="h-[100px] sm:h-[140px]">
-                                            <img className='h-full w-full' src={item.mainImage} alt="Loading..." />
-                                        </div>
-                                        <div className="border-t-2 p-2">
-                                            <p className='text-xl sm:text-base font-bold'>{item.name}</p>
-                                            <p className='text-xl sm:text-base'>{item.price}</p>
-                                        </div>
-                                    </Link>
-                                    <Link >
-                                        <div className="bg-teal-600 text-slate-300 p-2 flex items-center justify-between " onClick={() => {
-                                            handleAddToCart(item._id)
-                                        }}>
-                                            <p>Add to Cart </p>
-                                            <i class="fa-solid fa-basket-shopping"></i>
-                                        </div>
+                                        <Link to={`/products/${item._id}`} state={item} >
 
-                                    </Link>
-                                </Card>
+                                            <div key={index} className="h-[100px] sm:h-[140px]">
+                                                <img className='h-full w-full' src={item.mainImage} alt="Loading..." />
+                                            </div>
+                                            <div className="border-t-2 p-2">
+                                                <p className='text-xl sm:text-base font-bold'>{item.name}</p>
+                                                <p className='text-xl sm:text-base'>${item.price}</p>
+                                            </div>
+                                        </Link>
+                                        <Link >
+                                            <div className="bg-teal-600 text-slate-300 p-2 flex items-center justify-between " onClick={() => {
+                                                handleAddToCart(item._id)
+                                            }}>
+                                                <p>Add to Cart </p>
+                                                <i class="fa-solid fa-basket-shopping"></i>
+                                            </div>
+
+                                        </Link>
+                                    </Card>
+                                }
                             </>
                         )
                     })
@@ -99,36 +104,39 @@ function ProductNP() {
 
             <h1 className='text-center m-4 text-xl fw-bolder '>Popular Products</h1>
             <div className="  flex flex-wrap justify-center ">
-                
+
                 {
                     data.map((item, index) => {
                         return (
                             <>
-                                <Card className='border lg:w-[200px] sm:w-[150px] sm:h-[250px] m-2 flex flex-col shadow justify-between  hover:translate-x-1 '>
-                                <button type='button'  onClick={() => {
-                                        handleAddToWishlist(item._id)
-                                        setColor("danger")
-                                        }} className='bg-teal-700 py-1 px-2 sm:py-2 sm:px-8 m-2 rounded absolute text-white text-xs sm:text-base'><i class="fa-regular  fa-heart" onClick={()=>setColor("bg-warning")} ></i> </button>
+                                {index < productLimit &&
 
-                                    <Link to={`/products/${item._id}`} state={item} >
-                                        <div key={index} className="h-[100px] sm:h-[140px]">
-                                            <img className='h-full w-full' src={item.mainImage} alt="Loading..." />
-                                        </div>
-                                        <div className="border-t-2 p-2">
-                                            <p className='text-xl sm:text-base font-bold'>{item.name}</p>
-                                            <p className='text-xl sm:text-base'>{item.price}</p>
-                                        </div>
-                                    </Link>
-                                    <Link >
-                                        <div className="bg-teal-600 text-slate-300 p-2 flex items-center justify-between " onClick={() => {
-                                            handleAddToCart(item._id)
-                                        }}>
-                                            <p>Add to Cart </p>
-                                            <i class="fa-solid fa-basket-shopping"></i>
-                                        </div>
+                                    <Card className='border lg:w-[200px] sm:w-[150px] sm:h-[250px] m-2 flex flex-col shadow justify-between  hover:translate-x-1 '>
+                                        <button type='button' onClick={() => {
+                                            handleAddToWishlist(item._id)
+                                            setColor("danger")
+                                        }} className='bg-teal-700 py-1 px-2 sm:py-2 sm:px-8 m-2 rounded absolute text-white text-xs sm:text-base'><i class="fa-regular  fa-heart" onClick={() => setColor("bg-warning")} ></i> </button>
 
-                                    </Link>
-                                </Card>
+                                        <Link to={`/products/${item._id}`} state={item} >
+                                            <div key={index} className="h-[100px] sm:h-[140px]">
+                                                <img className='h-full w-full' src={item.mainImage} alt="Loading..." />
+                                            </div>
+                                            <div className="border-t-2 p-2">
+                                                <p className='text-xl sm:text-base font-bold'>{item.name}</p>
+                                                <p className='text-xl sm:text-base'>{item.price}</p>
+                                            </div>
+                                        </Link>
+                                        <Link >
+                                            <div className="bg-teal-600 text-slate-300 p-2 flex items-center justify-between " onClick={() => {
+                                                handleAddToCart(item._id)
+                                            }}>
+                                                <p>Add to Cart </p>
+                                                <i class="fa-solid fa-basket-shopping"></i>
+                                            </div>
+
+                                        </Link>
+                                    </Card>
+                                }
                             </>
                         )
                     })

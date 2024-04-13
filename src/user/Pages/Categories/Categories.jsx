@@ -19,7 +19,7 @@ function Categories() {
 
   const fetchData = async (e) => {
     try {
-      const response = await axios.get("http://localhost:3001/api/categories", {
+      const response = await axios.get("http://localhost:3002/api/categories", {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem("admintoken")} `
         }
@@ -35,18 +35,18 @@ function Categories() {
   return (
     <>
       {/* header-start */}
-      <div className="flex flex-col sm:flex-row justify-between gap-3 p-4  text-teal-900">
+      <div className="flex flex-col flex-wrap sm:flex-row justify-between  gap-3 p-4  text-teal-900">
 
 
         <div className="hidden sm:flex flex-wrap justify-center gap-5 m-auto w-[full]">
 
-          {categories && categories.map((item, i) => {
+          {categories && categories.map((item, index) => {
             return (
               <>
                 <Link to={`/shopping/${item._id}`} state={item} className="relative">
                   <p className="p-2 rounded-lg  transition-transform">
                     {item.name}
-                    <span className="absolute bottom-0 left-0 w-full h-0 bg-lime-400 transition-transform"></span>
+                    
                   </p>
                 </Link>
               </>

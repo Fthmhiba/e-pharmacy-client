@@ -9,7 +9,7 @@ function Coupon() {
 
     const fetchdata = async () => {
         try {
-            const response = await axios.get('http://localhost:3001/api/coupons', {
+            const response = await axios.get('http://localhost:3002/api/coupons', {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem("admintoken")} `
                 }

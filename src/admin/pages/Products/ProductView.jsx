@@ -9,33 +9,6 @@ function ProductView() {
   const [products, setProduct] = useState([]);
   const [refresh, setRefresh] = useState(true);
 
-  // const products = [
-  //     {
-  //       main_image:img,
-  //       img1:img,
-  //       img2:img,
-  //       img3:img,
-  //       img4:img,
-  //       name:"",
-  //       price: "",
-  //       details:"",
-  //       delivery:""
-  //     },
-  //     {
-  //       main_image:img,
-  //       img1:img,
-  //       img2:img,
-  //       img3:img,
-  //       img4:img,
-  //       name:"",
-  //       price: "",
-  //       details:"",
-  //       delivery:""
-  //     }
-  //   ]
-
-
-
 
   useEffect(() => {
     fetchData()
@@ -44,7 +17,7 @@ function ProductView() {
 
   const fetchData = async (e) => {
     try {
-      const response = await axios.get("http://localhost:3001/api/products", {
+      const response = await axios.get("http://localhost:3002/api/products", {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem("admintoken")} `
         }
@@ -64,7 +37,7 @@ function ProductView() {
 
   const handleDelete = async (id) => {
     try {
-      const response = await axios.delete(`http://localhost:3001/api/products/${id}`, {
+      const response = await axios.delete(`http://localhost:3002/api/products/${id}`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem("admintoken")} `
         }

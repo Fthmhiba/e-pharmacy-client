@@ -16,7 +16,7 @@ function ProductDetails() {
   const handleAddToWishlist = async () => {
     try {
       console.log('api');
-      const response = await axios.post('http://localhost:3001/api/wishlist/addToWishlist', { productId: item._id, userId: JSON.parse(localStorage.getItem("userData"))?._id });
+      const response = await axios.post('http://localhost:3002/api/wishlist/addToWishlist', { productId: item._id, userId: JSON.parse(localStorage.getItem("userData"))?._id });
       console.log(response);
 
 
@@ -30,7 +30,7 @@ function ProductDetails() {
   const handleAddToCart = async () => {
     try {
       console.log('api');
-      const response = await axios.post('http://localhost:3001/api/cart/addToCart', { productId: item._id, userId: JSON.parse(localStorage.getItem("userData"))?._id });
+      const response = await axios.post('http://localhost:3002/api/cart/addToCart', { productId: item._id, userId: JSON.parse(localStorage.getItem("userData"))?._id });
       console.log(response);
 
       successToast("Succesfully Added into Cart")
@@ -42,7 +42,7 @@ function ProductDetails() {
 
   const fetchdata = async () => {
     try {
-      const response = await axios.get("http://localhost:3001/api/products")
+      const response = await axios.get("http://localhost:3002/api/products")
       setData(response.data.products);
     } catch (error) {
       console.log(error, 'error');

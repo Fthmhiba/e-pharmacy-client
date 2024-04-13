@@ -23,7 +23,7 @@ function AdminSignup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3001/api/admin/register', formDatas );
+      const response = await axios.post('http://localhost:3002/api/admin/register', formDatas );
       successToast(response.data.message)
       navigate('/admin-login'); 
     } catch (error) {

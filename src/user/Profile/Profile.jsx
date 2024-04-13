@@ -10,12 +10,16 @@ function Profile() {
 
     return (
         <>
+        <p className=" text-center p-2" >
+                <Link to={"/"} > <span className='hover:text-lime-500'><i class="fa-solid fa-chevron-left text-xs text-center"></i> <i class="fa-solid fa-chevron-left text-xs text-center"></i> Home</span></Link>
+
+            </p>
             <h1 className="fs-4 text-center m-3 fw-bold  text-teal-800 hover:text-gray-300" >Profile</h1>
             <div className="text-center bg-teal-700 w-96 text-gray-300 p-3 m-auto rounded">
             <div className="text-center">
                 <div className="flex gap-3 m-2">
                     <Avatar></Avatar>
-                    <h3>Hello, <span className="text-lg text-white hover:text-yellow-300"> {JSON.parse(localStorage.getItem("userData")).lname}</span> </h3>
+                    <span className="text-lg text-white hover:text-yellow-300"> {JSON.parse(localStorage.getItem("userData")).fname}</span>
                 </div>
                 <div className="">
                     <p>Email: <span className="text-lg text-white hover:text-yellow-300"> {JSON.parse(localStorage.getItem("userData")).email}</span></p>

@@ -15,7 +15,7 @@ function AddCard() {
       const addCard = async(e) => {
         e.preventDefault();
         try {
-            const response = await axios.post("http://localhost:3001/api/cards",{title:title,description:description,timeline:timeline,},{headers:{
+            const response = await axios.post("http://localhost:3002/api/cards",{title:title,description:description,timeline:timeline,},{headers:{
               'Authorization':`Bearer ${localStorage.getItem("admintoken")} `
             }})
             

@@ -26,7 +26,7 @@ function ProductAdd() {
 
   const fetchData = async (e) => {
     try {
-      const response = await axios.get("http://localhost:3001/api/categories", {
+      const response = await axios.get("http://localhost:3002/api/categories", {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem("admintoken")} `
         }
@@ -45,7 +45,7 @@ function ProductAdd() {
     e.preventDefault()
 
     try {
-      const response = await axios.post("http://localhost:3001/api/products", {mainImage:mainImage,image:image,name:name,price:price,details:details,delivery:delivery,dropdown},
+      const response = await axios.post("http://localhost:3002/api/products", {mainImage:mainImage,image:image,name:name,price:price,details:details,delivery:delivery,dropdown},
       {headers:{
         'Authorization':`Bearer ${localStorage.getItem("admintoken")} `
       }})

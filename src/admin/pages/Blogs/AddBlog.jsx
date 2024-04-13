@@ -15,7 +15,7 @@ function AddBlog() {
     const addBlog = async(e) =>{
         e.preventDefault()
         try {
-            const response = await axios.post(`http://localhost:3001/api/blogs`,{image:image,title:title,description:description},{headers:{
+            const response = await axios.post(`http://localhost:3002/api/blogs`,{image:image,title:title,description:description},{headers:{
               'Authorization':`Bearer ${localStorage.getItem("admintoken")} `
             }})
             

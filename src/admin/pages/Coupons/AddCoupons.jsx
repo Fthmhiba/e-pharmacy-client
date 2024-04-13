@@ -16,7 +16,7 @@ function AddCoupons() {
       const addCoupon = async(e) => {
         e.preventDefault();
         try {
-            const response = await axios.post("http://localhost:3001/api/coupons",{title:title,description:description,timeline:timeline,offerRate:code},{headers:{
+            const response = await axios.post("http://localhost:3002/api/coupons",{title:title,description:description,timeline:timeline,offerRate:code},{headers:{
               'Authorization':`Bearer ${localStorage.getItem("admintoken")} `
             }})
             

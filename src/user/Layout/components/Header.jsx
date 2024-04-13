@@ -26,11 +26,11 @@ function Header() {
 
   return (
     <div  >
-      <header className="bg-teal-700 text-slate-100">
-        <div className=" flex justify-between  items-center p-3 shadow  ">
+      <header className="bg-teal-700 text-slate-100 ">
+        <div className=" flex flex-row justify-between items-center sm:gap-3  p-4 shadow  ">
           <h3 className='text-lg fw-semibold ' style={{ fontFamily: "cursive" }} >Phar.Co</h3>
           {/* ----------------- */}
-          <form action="">
+          <form action="" className='flex '>
             <input
               type="text"
               value=""
@@ -39,7 +39,7 @@ function Header() {
                 handleSubmitSearch(e.target.value)
               }}
               placeholder="Search medicine, medical products"
-              className="border border-gray-300 px-3 py-1 rounded-lg focus:outline-none focus:border-blue-500 pe-3   "
+              className="border border-gray-300 p-1 rounded-lg focus:outline-none focus:border-blue-500 pe-3    "
             />
             <button type="submit" onClick={handleSubmitSearch} className="bg-teal-800  px-4 py-2 rounded-lg hover:shadow-white">Search</button>
           </form>
@@ -66,10 +66,10 @@ function Header() {
           {/* --------------------- */}
 
           <div className="flex gap-4 justify-center items-center fs-5">
-            <NavLink to={"coupons"}> <p className='hover:bg-slate-200 rounded-full hover:text-teal-700 p-1'><i class="fa-solid fa-ticket"></i></p>   </NavLink>
-            <NavLink to={"Wishlist"}> <p className='hover:bg-slate-200 rounded-full hover:text-teal-700 p-1'><i class="fa-regular fa-heart"></i><span className='text-base bg-emerald-600 rounded-2xl p-1 hover:text-white'>{wishlist.length}</span></p>   </NavLink>
-            <NavLink to={"cart"}><p className='hover:bg-slate-200 rounded-full hover:text-teal-700 p-1'>
-              <i class="fa-solid fa-basket-shopping"></i> <span className='text-base bg-emerald-600 rounded-2xl p-1 hover:text-white'>{cart.length}</span> </p></NavLink>
+            <NavLink to={"coupons"}> <p className='hover:bg-slate-200  rounded-full  sm:block hidden hover:text-teal-700 p-1'><i class="fa-solid fa-ticket"></i></p>   </NavLink>
+            <NavLink to={"Wishlist"}> <p className='hover:bg-slate-200 rounded-full hover:text-teal-700 p-1 flex items-center'><i class="fa-regular fa-heart"></i><span className='text-base bg-emerald-600 rounded-2xl p-1 hover:text-white'>{wishlist.length}</span></p>   </NavLink>
+            <NavLink to={"cart"}><p className='hover:bg-slate-200 rounded-full hover:text-teal-700 p-1 flex items-center'>
+              <i class="fa-solid fa-basket-shopping"></i> <span className='text-base bg-emerald-600 rounded-2xl p-1 hover:text-white '>{cart.length}</span> </p></NavLink>
             <p className='hover:bg-slate-200 rounded-full hover:text-teal-700 p-1'><i class="fa-regular fa-user relative flex">
 
               <span onClick={toggleDropdown} className="flex items-center ">

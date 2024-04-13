@@ -17,7 +17,7 @@ function EditCard() {
     const editCards = async(e) =>{
         e.preventDefault()
         try {
-            const response = await axios.put(`http://localhost:3001/api/cards/${id}`,{title:title,description:description,timeline:timeline,offerRate:offerRate},
+            const response = await axios.put(`http://localhost:3002/api/cards/${id}`,{title:title,description:description,timeline:timeline,offerRate:offerRate},
             {
                 headers:{
               'Authorization':`Bearer ${localStorage.getItem("admintoken")}`

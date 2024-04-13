@@ -15,7 +15,7 @@ function EditCategory() {
   const handleEdit = async(e) =>{
     e.preventDefault()
     try {
-        const response = await axios.put(`http://localhost:3001/api/categories/${id}`,{name:name,description:description},
+        const response = await axios.put(`http://localhost:3002/api/categories/${id}`,{name:name,description:description},
         {
           headers:{
           'Authorization':`Bearer ${localStorage.getItem("admintoken")}`

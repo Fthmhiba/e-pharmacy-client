@@ -6,19 +6,19 @@ function UserManagement() {
 
     const [users,setUsers] = useState([]);
 
-    // useEffect(()=>{
-    //   fetchUsers()
-    // },[])
+    useEffect(()=>{
+      fetchUsers()
+    },[])
   
-    // const fetchUsers=async()=>{
-    //   try {
-    //     const response = await axios.get("http://localhost:3000/api/user")
-    //      console.log(response,"responseee");    
-    //     setUsers(response.data.users)      
-    //   } catch (error) {
-    //     errorToast(error.message || 'error')
-    //   }
-    // }
+    const fetchUsers=async()=>{
+      try {
+        const response = await axios.get("http://localhost:3002/api/user")
+         console.log(response,"responseee");    
+        setUsers(response.data.users)      
+      } catch (error) {
+        errorToast(error.message || 'error')
+      }
+    }
 
     
     // const UserManagement = [

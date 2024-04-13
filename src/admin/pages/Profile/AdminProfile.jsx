@@ -24,7 +24,7 @@ function AdminProfile() {
 
   const fetchData = async() =>{
     try {
-      const response = await axios.get(`http://localhost:3001/api/admin/profile/${JSON.parse(localStorage.getItem("adminData"))._id }`,{headers:{
+      const response = await axios.get(`http://localhost:3002/api/admin/profile/${JSON.parse(localStorage.getItem("adminData"))._id }`,{headers:{
         'Authorization':`Bearer ${localStorage.getItem("admintoken")} `
       }})
 

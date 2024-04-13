@@ -21,7 +21,7 @@ function AddBanner2() {
     const addBanner = async(e) =>{
         e.preventDefault()
         try {
-            const response = await axios.post(`http://localhost:3001/api/banner2`,{image:image,title:title,description:description,percentage:percentage,rate:rate,offerRate:offerRate},{headers:{
+            const response = await axios.post(`http://localhost:3002/api/banner2`,{image:image,title:title,description:description,percentage:percentage,rate:rate,offerRate:offerRate},{headers:{
               'Authorization':`Bearer ${localStorage.getItem("admintoken")} `
             }})
             

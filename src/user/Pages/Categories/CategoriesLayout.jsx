@@ -17,7 +17,7 @@ function CategoriesLayout() {
   const fetchData = async (e) => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/api/products/getprdcts-bycat/${page}`,
+        `http://localhost:3002/api/products/getprdcts-bycat/${page}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("admintoken")} `,
@@ -37,7 +37,7 @@ function CategoriesLayout() {
   const handleAddToCart = async (e) => {
     try {
       console.log('api');
-      const response = await axios.post('http://localhost:3001/api/cart/addToCart', { productId: e, userId: JSON.parse(localStorage.getItem("userData"))?._id });
+      const response = await axios.post('http://localhost:3002/api/cart/addToCart', { productId: e, userId: JSON.parse(localStorage.getItem("userData"))?._id });
       console.log(response);
 
       successToast("Succesfully Added into Cart")

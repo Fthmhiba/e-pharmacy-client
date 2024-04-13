@@ -10,7 +10,7 @@ const { wishlist, setWishlist, count, refresh, setRefresh } = useContext(Context
 
 const fetchdata = async () => {
   try {
-      const response = await axios.get('http://localhost:3001/api/wishlist/viewall')
+      const response = await axios.get('http://localhost:3002/api/wishlist/viewall')
       setWishlist(response.data.result)
   } catch (error) {
     console.log(error);
@@ -29,7 +29,7 @@ fetchdata()
   // remove 
   const handleRemoveQuantity = async (id) => {
     try {
-      const response = await axios.get(`http://localhost:3001/api/wishlist/remove-wishlist/${JSON.parse(localStorage.getItem("userData"))._id}/${id}`)
+      const response = await axios.get(`http://localhost:3002/api/wishlist/remove-wishlist/${JSON.parse(localStorage.getItem("userData"))._id}/${id}`)
       setRefresh(!refresh)
       successToast("Removed succesfully")
     } catch (error) {

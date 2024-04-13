@@ -14,7 +14,7 @@ function AddCategory() {
   const addCategory = async(e) =>{
     e.preventDefault()
     try {
-        const response = await axios.post("http://localhost:3001/api/categories",{name:name,description:description},{headers:{
+        const response = await axios.post("http://localhost:3002/api/categories",{name:name,description:description},{headers:{
           'Authorization':`Bearer ${localStorage.getItem("admintoken")} `
         }});
         

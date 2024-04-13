@@ -6,7 +6,6 @@ import Home from './user/Home/Home'
 import Signup from './user/Register/Signup'
 import Login from './user/Login/Login'
 // import Wishlist from './user/Wishlist/Wishlist'
-import Cart from './user/Pages/Cart/Usercart'
 import Profile from './user/Profile/Profile'
 
 import AdminSignup from './admin/Register/AdminSignup'
@@ -57,6 +56,9 @@ import Coupons from './admin/pages/Coupons/Coupons'
 import Coupon from './user/Pages/Coupons/Coupon'
 import AddBlog from './admin/pages/Blogs/AddBlog'
 import ViewBlog from './admin/pages/Blogs/ViewBlog'
+import Usercart from './user/Pages/Cart/Usercart'
+import OrderManagement from './admin/pages/Orders/OrderManagment'
+import UserOrders from './admin/pages/Orders/UserOrders'
 
 
 export const Context = React.createContext()
@@ -92,7 +94,7 @@ function App() {
         },
         {
           path: "cart",
-          element: <Cart />,
+          element: <Usercart />,
         },
         {
           path: "coupons",
@@ -107,8 +109,8 @@ function App() {
           element: <ProductDetails />
         },
         {
-          path: "order",
-          element: <Orders />
+          path: "done",
+          // element: <Orders />
         },
         {
           path: "cards/:cards",
@@ -116,7 +118,7 @@ function App() {
         },
         {
           path: "payment",
-          element: <Payment />
+          // element: <Payment />
         },
         {
           path: "checkout",
@@ -185,7 +187,11 @@ function App() {
           children: [
             {
               path: "",
-              // element: <OrderManagement/>
+              element: <OrderManagement/>
+            },
+            {
+              path: "user/:id",
+              element: <UserOrders/>
             },
             {
               path: "all",
@@ -277,11 +283,11 @@ function App() {
           children: [
             {
               path: "",
-              element: <ViewCard/>
+              element: <ViewCard />
             },
             {
               path: "edit-cards/:id",
-              element: <EditCard/>
+              element: <EditCard />
             },
             {
               path: "add-cards",
@@ -295,11 +301,11 @@ function App() {
           children: [
             {
               path: "",
-              element: <ViewCoupons/>
+              element: <ViewCoupons />
             },
             {
               path: "edit-coupons/:id",
-              element: <EditCoupons/>
+              element: <EditCoupons />
             },
             {
               path: "add-coupon",
@@ -314,7 +320,7 @@ function App() {
           children: [
             {
               path: "",
-              element: <ViewBlog/>
+              element: <ViewBlog />
             },
             {
               path: "edit-blog/:id",
@@ -322,7 +328,7 @@ function App() {
             },
             {
               path: "add-blog",
-              element : <AddBlog/>
+              element: <AddBlog />
             }
           ]
         }
@@ -353,18 +359,18 @@ function App() {
 
   const fetchdata = async () => {
     try {
-        const response = await axios.get('http://localhost:3001/api/cart/viewall')
-        setCart(response.data.result)
+      const response = await axios.get('http://localhost:3002/api/cart/viewall')
+      setCart(response.data.result)
     } catch (error) {
       console.log(error);
     }
-}
+  }
 
-useEffect(() => {
-  fetchdata()
-}, [refresh])
+  useEffect(() => {
+    fetchdata()
+  }, [refresh])
 
-  
+
   return (
     <>
       <Context.Provider value={{ count, setCount, cart, setCart, wishlist, setWishlist, refresh, setRefresh }}>

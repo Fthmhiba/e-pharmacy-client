@@ -13,7 +13,7 @@ function ViewBlog() {
 
     const fetchData = async (e) => {
         try {
-            const response = await axios.get("http://localhost:3001/api/blogs", {
+            const response = await axios.get("http://localhost:3002/api/blogs", {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("admintoken")} `,
                 },
@@ -29,7 +29,7 @@ function ViewBlog() {
 
     const handleDelete = async (id) => {
         try {
-            const response = await axios.delete(`http://localhost:3001/api/blog/${id}`, {
+            const response = await axios.delete(`http://localhost:3002/api/blog/${id}`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem("admintoken")} `
                 }

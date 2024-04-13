@@ -29,7 +29,7 @@ function ViewCard() {
 
       const fetchData = async(e) =>{
         try {
-            const response = await axios.get("http://localhost:3001/api/cards",{headers:{
+            const response = await axios.get("http://localhost:3002/api/cards",{headers:{
               'Authorization':`Bearer ${localStorage.getItem("admintoken")} `
             }})
             console.log(response,"res");
@@ -44,7 +44,7 @@ function ViewCard() {
 
     const handleDelete = async(id)=>{
       try {
-        const response = await axios.delete(`http://localhost:3001/api/cards/${id}`,{headers:{
+        const response = await axios.delete(`http://localhost:3002/api/cards/${id}`,{headers:{
               'Authorization':`Bearer ${localStorage.getItem("admintoken")} `
             }})
 
