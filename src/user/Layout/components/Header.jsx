@@ -12,7 +12,7 @@ function Header() {
 
   const handleSubmitSearch = async (srch) => {
     try {
-      const response = await axios.get(`http://localhost:3001/api/products/search?name=${srch}`)
+      const response = await axios.get(`http://localhost:3002/api/products/search?name=${srch}`)
       setSearchResult(response.data.result)
     } catch (error) {
       console.log(error);
@@ -67,9 +67,9 @@ function Header() {
 
           <div className="flex gap-4 justify-center items-center fs-5">
             <NavLink to={"coupons"}> <p className='hover:bg-slate-200  rounded-full  sm:block hidden hover:text-teal-700 p-1'><i class="fa-solid fa-ticket"></i></p>   </NavLink>
-            <NavLink to={"Wishlist"}> <p className='hover:bg-slate-200 rounded-full hover:text-teal-700 p-1 flex items-center'><i class="fa-regular fa-heart"></i><span className='text-base bg-emerald-600 rounded-2xl p-1 hover:text-white'>{wishlist.length}</span></p>   </NavLink>
+            <NavLink to={"Wishlist"}> <p className='hover:bg-slate-200 rounded-full hover:text-teal-700 p-1 flex items-center'><i class="fa-regular fa-heart"></i><span className='text-base bg-emerald-600 rounded-2xl p-1 hover:text-white'>{wishlist?.length}</span></p>   </NavLink>
             <NavLink to={"cart"}><p className='hover:bg-slate-200 rounded-full hover:text-teal-700 p-1 flex items-center'>
-              <i class="fa-solid fa-basket-shopping"></i> <span className='text-base bg-emerald-600 rounded-2xl p-1 hover:text-white '>{cart.length}</span> </p></NavLink>
+              <i class="fa-solid fa-basket-shopping"></i> <span className='text-base bg-emerald-600 rounded-2xl p-1 hover:text-white '>{cart?.length}</span> </p></NavLink>
             <p className='hover:bg-slate-200 rounded-full hover:text-teal-700 p-1'><i class="fa-regular fa-user relative flex">
 
               <span onClick={toggleDropdown} className="flex items-center ">

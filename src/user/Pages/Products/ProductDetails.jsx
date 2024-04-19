@@ -6,6 +6,8 @@ import { Card } from '@mui/material';
 
 function ProductDetails() {
   const [data, setData] = useState([])
+  const [productLimit, setProductLimit] = useState(5)
+
 
 
   const { prdctdetails } = useParams();
@@ -110,28 +112,30 @@ function ProductDetails() {
             data.map((item, index) => {
               return (
                 <>
-                  <Card className=' border w-[130px] sm:w-[120px] sm:h-[250px] m-3 flex  shadow justify-between items-center hover:translate-x-1 '>
-                    <Link to={`/products/${item._id}`} state={item} >
-                      <button type='button' onClick={() => {
-                        handleAddToWishlist(item._id)
-                      }} className={`py-1 px-2 sm:py-2 sm:px-8 m-2 rounded absolute  text-white text-xs sm:text-base `}
-                      ><i class="fa-regular text-lg fa-heart"  ></i> </button>
+                  {index < productLimit &&
+                    <Card className=' border w-[130px] sm:w-[120px] sm:h-[250px] m-3 flex  shadow justify-between items-center hover:translate-x-1 '>
+                      <Link to={`/products/${item._id}`} state={item} >
+                        <button type='button' onClick={() => {
+                          handleAddToWishlist(item._id)
+                        }} className={`py-1 px-2 sm:py-2 sm:px-8 m-2 rounded absolute  text-white text-xs sm:text-base `}
+                        ><i class="fa-regular text-lg fa-heart"  ></i> </button>
 
-                      <div key={index} className="h-[130px] sm:h-[140px]">
-                        <img className='h-full w-full' src={item.mainImage} alt="Loading..." />
-                      </div>
-                      <div className="border-t-2 p-2">
-                        <p className='  font-bold'>{item.name}</p>
-                        <p className=' sm:text-base'>{item.price}</p>
-                      </div>
-                    </Link>
-                    <Link >
-
-            
+                        <div key={index} className="h-[130px] sm:h-[140px]">
+                          <img className='h-full w-full' src={item.mainImage} alt="Loading..." />
+                        </div>
+                        <div className="border-t-2 p-2">
+                          <p className='  font-bold'>{item.name}</p>
+                          <p className=' sm:text-base'>{item.price}</p>
+                        </div>
+                      </Link>
+                      <Link >
 
 
-                    </Link>
-                  </Card>
+
+
+                      </Link>
+                    </Card>
+                  }
                 </>
               )
             })

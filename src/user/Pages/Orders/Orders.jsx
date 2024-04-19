@@ -1,48 +1,55 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 function Orders() {
+    
+  const [data,setData] = useState([]);
+
+  useEffect(()=>{
+    fetchdata();
+  },[])
+
+
+  const fetchdata = async ()=>{
+      try {
+          const response = await axios.get(`http://localhost:3002/api/order/get-orders/${JSON.parse(localStorage.getItem("userData"))._id}`)
+
+          setData(response.data.data);
+      } catch (error) {
+        setData([]);
+
+          console.log(error);
+      }
+  }
   return (
     <div>
-      <div className='m-5 h-screen'>
-            <div className='border-1 rounded shadow text-teal-800 p-1 w-[400px] m-auto h-[520px]'>
-                <h2 className='font-bold text-2xl text-center p-3'>Order</h2>
-                <div className=" ">
-                    <form action="" className='flex justify-around items-center p-1'>
-                        <div className="flex justify-around items-center gap-2">
-                            <input type="radio" name="radio" value='creditcard' />
-                            <p>Cash On Delivery</p>
-                        </div>
-                        <div className="flex justify-around items-center gap-2">
-                            <input type="radio" name="radio" value='paypal' />
-                            <p>Online Payment</p>
-                        </div>
-                        
-                    </form>
-                </div>
-                <div className="p-2 text-gray-400 ">
-                    <div className="p-2">
-                        <p className=''>Card Holder Name </p>
-                        <input type="text" required placeholder='Name' className='w-80 border-2 rounded ps-3 p-1 text-sm' />
+        <p className=" text-center p-2">
+        <Link to={"/"}><span className='hover:text-lime-500'><i class="fa-solid fa-chevron-left text-xs text-center"></i> <i class="fa-solid fa-chevron-left text-xs text-center"></i> Home</span></Link>
+      </p>
+       <div className="bg-slate-100 p-5 rounded-lg w-[350px] md:w-[850px] m-auto my-5">
+          <div className="flex justify-between">
+            <p className='font-bold text-lg'>My Orders</p>
+            <p className='font-bold'>2 items</p>
+          </div>
+          <div className="flex flex-wrap my-5 gap-5">
+      
+            {
+              data.map((item)=>{
+                return(
+                  <div key={item._id} className='flex gap-5 border px-3 py-4 shadow-md'>
 
-                    </div>
-                    <div className="p-2">
-                        <p>Credit Card Number </p>
-                        <input type="text" required placeholder='XXXX XXXX XXXX XXXX' className='w-80 border-2 rounded ps-3 p-1 text-sm' />
+                    <p>{item.productInfo.name}</p>
+                    <p>{item.productInfo.details}</p>
+                    <img src={item.productInfo.mainImage} alt="..." loading=''  />
+                    <p>{item.payment?.amount}</p>
+                    <p>order id : {item.payment.orderId}</p>
+                  </div>
+                )
+              })
+            }
 
-                    </div>
-                  
-                </div>
-                <br />
-                <hr />
-                <div className="p-3 text-lg fw-semibold  items-center flex justify-between">
-                    <p>Total amount</p>
-                    <p>$1880</p>
-                </div>
-                <Link to={"/payment"}>
-                    <button className='bg-teal-800 text-white p-2 rounded w-80 m-4'>Order</button>
-                </Link>
-            </div>
+          </div>
         </div>
     </div>
   )

@@ -5,6 +5,7 @@ import Poster from './components/Poster'
 import MUproduct from './components/MUproduct'
 import Categories from '../Pages/Categories/Categories'
 import OfferCard from './components/OfferCard'
+import Blog from '../Pages/Blogs/Blog'
 
 function Home() {
   return (
@@ -15,6 +16,7 @@ function Home() {
         <Banner/>
         <MUproduct/>
         <OfferCard/>
+        <Blog/>
     </div>
   )
 }

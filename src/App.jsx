@@ -18,7 +18,7 @@ import ProductEdit from './admin/pages/Products/ProductEdit'
 import OfferCards from './admin/pages/OfferCards/OfferCard'
 import Categories from './admin/pages/Categories/Categories'
 import Blogs from './admin/pages/Blogs/Blogs'
-import Order from './admin/pages/Orders/Order'
+
 import AdminProfile from './admin/pages/Profile/AdminProfile'
 import UserManagement from './admin/pages/User/UserManagement'
 import ProductView from './admin/pages/Products/ProductView'
@@ -55,10 +55,15 @@ import AddCoupons from './admin/pages/Coupons/AddCoupons'
 import Coupons from './admin/pages/Coupons/Coupons'
 import Coupon from './user/Pages/Coupons/Coupon'
 import AddBlog from './admin/pages/Blogs/AddBlog'
+import AddBlog2 from './admin/pages/Blogs/AddBlog2'
+
 import ViewBlog from './admin/pages/Blogs/ViewBlog'
 import Usercart from './user/Pages/Cart/Usercart'
 import OrderManagement from './admin/pages/Orders/OrderManagment'
 import UserOrders from './admin/pages/Orders/UserOrders'
+import Order from './admin/pages/Orders/Order'
+import EditBlogs from './admin/pages/Blogs/EditBlog'
+
 
 
 export const Context = React.createContext()
@@ -109,8 +114,8 @@ function App() {
           element: <ProductDetails />
         },
         {
-          path: "done",
-          // element: <Orders />
+          path: "order",
+          element: <Orders/>
         },
         {
           path: "cards/:cards",
@@ -183,7 +188,7 @@ function App() {
         },
         {
           path: "orders",
-          element: <Order />,
+          element: <Order/>,
           children: [
             {
               path: "",
@@ -195,7 +200,7 @@ function App() {
             },
             {
               path: "all",
-              // element: <OrderManagement/>
+              element: <OrderManagement/>
             },
             {
               path: "new",
@@ -324,12 +329,16 @@ function App() {
             },
             {
               path: "edit-blog/:id",
-              // element : <EditBlog/>
+              element : <EditBlogs/>
             },
             {
               path: "add-blog",
               element: <AddBlog />
-            }
+            },
+            // {
+            //   path: "add-blog2",
+            //   element: <AddBlog2 />
+            // }
           ]
         }
 
