@@ -49,44 +49,44 @@ function UserOrders() {
   };
 
 
-  const ApproveOrder = async(id)=>{
+  const ApproveOrder = async (id) => {
     try {
       await axios.post(`http://localhost:3002/api/order/approved/${id}`)
       successToast("Approved");
       setRefresh(!refresh);
     } catch (error) {
-      errorToast("error",error)
+      errorToast("error", error)
     }
   };
 
 
-  const PendingOrder = async(id)=>{
+  const PendingOrder = async (id) => {
     try {
       await axios.post(`http://localhost:3002/api/order/pending/${id}`)
       successToast("order pending...");
       setRefresh(!refresh);
     } catch (error) {
-      errorToast("error",error)
+      errorToast("error", error)
     }
   };
 
-  const ShippedOrder = async(id)=>{
+  const ShippedOrder = async (id) => {
     try {
       await axios.post(`http://localhost:3002/api/order/shipped/${id}`)
       successToast("shipped");
       setRefresh(!refresh);
     } catch (error) {
-      errorToast("error",error)
+      errorToast("error", error)
     }
   };
 
-  const DeliveredOrder = async(id)=>{
+  const DeliveredOrder = async (id) => {
     try {
       await axios.post(`http://localhost:3002/api/order/delivered/${id}`)
       successToast("delivered");
       setRefresh(!refresh);
     } catch (error) {
-      errorToast("error",error)
+      errorToast("error", error)
     }
   };
 
@@ -107,14 +107,14 @@ function UserOrders() {
                   </p>
                   <span className="text-teal-900">Mode of payment:</span>
                   <span className="text-xs sm:text-base font-semibold text-center underline">
-                    {item?.paymentInformation?.mode}
+                    {item?.productInformation?.mode}
                   </span>
-                  <p>
+                  {/* <p>
                     <span className="text-teal-900">Status :</span>
                     <span className="text-xs sm:text-base">
-                     {item?.paymentInformation?.status}
+                      {item?.paymentInfo?.status}
                     </span>
-                  </p>
+                  </p> */}
                 </div>
 
                 <div className="mt-3 flex border-t-2 border-teal-900 flex-wrap gap-1 justify-center">

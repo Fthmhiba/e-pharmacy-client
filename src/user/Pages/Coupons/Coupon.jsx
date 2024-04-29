@@ -14,7 +14,7 @@ function Coupon() {
                     'Authorization': `Bearer ${localStorage.getItem("admintoken")} `
                 }
             })
-            // console.log(response);
+            console.log(response);
             setCoupon(response.data.Coupon)
         } catch (error) {
             console.log(error);
@@ -34,27 +34,28 @@ function Coupon() {
             <div className="p-2 flex flex-wrap lg:flex-col p-sm-2     justify-center items-center ">
 
                 <div className="flex flex-wrap justify-center">
-                    <div className="bg-slate-100 m-4 border shadow p-5 rounded-lg lg:w-[700px]  md:w-[550px]  ">
+                    <div className="bg-slate-100 m-4 border shadow p-5 rounded-lg lg:w-[1200px]  md:w-[550px]  ">
                         <div className="text-center">
-                            <p className='font-bold'>Coupons</p>
+                            <p className='font-bold lg:text-lg'>Coupons</p>
                         </div>
-                        <div className="m-3 flex flex-wrap justify-center" >
+                        <div className="m-3 flex flex-wrap justify-center items-center" >
                             {
                                 coupon.map((item) => {
                                     return(
                                         <>
                                         
-                                    <Card className='w-[300px] bg-fuchsia-400  m-2 p-1 hover:translate-x-1'>
-                                        <div className="flex ">
+                                    <Card className='sm:w-[300px] rounded   m-2  hover:translate-x-1'>
+                                        <div className="flex bg-fuchsia-200 ">
                                             <div className="mt-1 p-1 text-center">
                                                 <div className="mt-1 flex justify-between p-2 gap-5 ">
                                                     <p className='font-bold text-lg sm:text-base'>{item.title}</p>
-                                                    <p className='font-bold text-lg sm:text-base'>{item.offerRate} <i class="fa-solid fa-ticket"></i></p>
-
+                                                    <p className='font-bold text-lg sm:text-base bg-emerald-600 p-2 text-white rounded  '> {item.code} <i class="fa-solid fa-ticket p-1"></i></p>
+                                                    
                                                 </div>
+                                                <p className='fw-bold '>${item.offerRate}</p>
                                                 <p>{item.discription}</p>
 
-                                                <button className=' text-teal-800  hover:bg-slate-300 p-1 rounded text-center font-semibold hover:translate-x-1' onClick={""}>Copy code</button>
+                                                <button className='m-2 text-teal-800  hover:bg-slate-300 p-1 border-1 border-emerald-600 rounded text-center font-semibold hover:translate-x-1' onClick={""}>Copy code</button>
                                             </div>
                                         </div>
                                     </Card>

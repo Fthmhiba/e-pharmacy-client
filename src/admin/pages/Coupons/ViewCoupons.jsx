@@ -68,6 +68,7 @@ function ViewCoupons() {
           <th>Description</th>
           <th>Timeline</th>
           <th>Code</th>
+          <th>OfferRate</th>
           <th>Actions</th>
         </tr>
         <div >
@@ -81,7 +82,9 @@ function ViewCoupons() {
                     <td className='p-2 m-1 '>{item.title}</td>
                     <td className=' '>{item.description}</td>
                     <td className='p-2 m-1 '>{item.timeline}</td>
+                    <td className=' '>{item.code}</td>
                     <td className=' '>{item.offerRate}</td>
+
                     <td>
                       <Link to={`/admin/coupons/edit-coupons/${item._id}`} state={item}>
                         <button className='border border-teal-900  px-2 m-1 hover:bg-teal-900 hover:text-white text-xs sm:text-base rounded'>Edit</button>

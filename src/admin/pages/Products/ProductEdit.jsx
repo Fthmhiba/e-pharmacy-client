@@ -106,11 +106,11 @@ return (
             <div className="flex flex-col w-[200px] gap-3 m-auto mt-3">
 
             <select name="" id="" onChange={(e)=> setDropdown(e.target.value) }>
+              <option className='border-1' >--Select--</option>
               { 
                 categories && categories.map((item)=>{
                 return(
                   <>
-                  <option>Select</option>
                   <option key={item._id} value={item._id}>{item.name}</option>
                   </>
                 )

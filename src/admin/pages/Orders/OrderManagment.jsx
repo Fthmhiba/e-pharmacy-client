@@ -28,7 +28,7 @@ function OrderManagement() {
     <>
     <div className="">
         <div className=" m-5">
-        <table className=' w-[80%] m-auto  table   bg-slate-300 p-5 rounded shadow'>
+        <table className=' w-[80%] m-auto  table   bg-slate-100 p-5 rounded shadow'>
           <tr className='flex items-center  justify-between gap-3 text-lg m-1  p-2'>
             <th className=''>Profile</th>
             <th>Id</th>
@@ -44,7 +44,7 @@ function OrderManagement() {
                   <>
 
 
-                    <tr className='p-3'>
+                    <tr className='p-3 flex items-center justify-around'>
                       <td className=' '><Avatar/></td>
                       <td>{item._id}</td>
                       <td className=' '>{item.userFname} {item.userLname}</td>

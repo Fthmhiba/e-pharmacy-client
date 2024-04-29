@@ -13,7 +13,7 @@ function Orders() {
 
   const fetchdata = async ()=>{
       try {
-          const response = await axios.get(`http://localhost:3002/api/order/get-orders/${JSON.parse(localStorage.getItem("userData"))._id}`)
+          const response = await axios.get(`http://localhost:3002/api/order/user/${JSON.parse(localStorage.getItem("userData"))._id}`)
 
           setData(response.data.data);
       } catch (error) {
@@ -30,7 +30,7 @@ function Orders() {
        <div className="bg-slate-100 p-5 rounded-lg w-[350px] md:w-[850px] m-auto my-5">
           <div className="flex justify-between">
             <p className='font-bold text-lg'>My Orders</p>
-            <p className='font-bold'>2 items</p>
+            <p className='font-bold'>{data.length} items</p>
           </div>
           <div className="flex flex-wrap my-5 gap-5">
       
@@ -42,7 +42,7 @@ function Orders() {
                     <p>{item.productInfo.name}</p>
                     <p>{item.productInfo.details}</p>
                     <img src={item.productInfo.mainImage} alt="..." loading=''  />
-                    <p>{item.payment?.amount}</p>
+                    <p>{item.payment.price}</p>
                     <p>order id : {item.payment.orderId}</p>
                   </div>
                 )

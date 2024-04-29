@@ -25,26 +25,36 @@ function Checkout() {
 
 
     const navigate = useNavigate();
-    console.log(state,'state');
+    console.log(state, 'state');
 
     const addAddress = async (e) => {
         e.preventDefault()
         try {
-                
-            const response = await axios.post("http://localhost:3002/api/order", { name, address, contact,total:state.totalAmount , city,state: stateName, pincode, mode: mode, userId: JSON.parse(localStorage.getItem("userData"))._id, productId: id }, {
-            headers: {
+
+            const response = await axios.post("http://localhost:3002/api/order", { name, address, contact, total: state.totalAmount, city, state: stateName, pincode, mode: mode, userId: JSON.parse(localStorage.getItem("userData"))._id, productId: id }, {
+                headers: {
                     'Authorization': `Bearer ${localStorage.getItem("usertoken")}`
                 }
             })
 
             console.log(response, "order");
+            if (mode === 'online') {
+                setOrderDetails({
+                    orderId: response.order_id,
+                    currency: response.currency,
+                    amount: response.amount,
+                });
+                setDisplayRazorpay(true);
+            }
+            if (mode === 'cod'){
+                setOrderDetails({
+                    orderId: response.order_id,
+                    currency: response.currency,
+                    amount: response.amount,
+                });
+                navigate("products/:prdctdetails")
+            }
 
-            setOrderDetails({
-                orderId: response.order_id,
-                currency: response.currency,
-                amount: response.amount,
-            });
-            setDisplayRazorpay(true);
 
 
             successToast("Address Added Succesfully");
@@ -82,7 +92,7 @@ function Checkout() {
 
                     <select name="payment mode" onChange={(e) => setMode(e.target.value)} className="p-2 text-gray-400 border-2" id="">
                         <option value="">payment mode</option>
-                        <option value="cash on delivery">Cash on delivery</option>
+                        <option value="cod">Cash on delivery</option>
                         <option value="online">Online payment</option>
 
                     </select>
